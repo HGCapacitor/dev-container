@@ -1,0 +1,16 @@
+version: "3.4"
+services: 
+    remote-dev:
+      image: remote-dev:latest
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "22:22"
+      environment:
+        - SSH_AUTH_SOCK=/ssh-agent
+      volumes:
+        - $SSH_AUTH_SOCK:/ssh-agent
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ..:/home/devuser/sources/
+      restart: unless-stopped

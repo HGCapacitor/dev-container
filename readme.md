@@ -8,11 +8,15 @@ It targets debian based host machines.
 
 # Setup the ssh-agent
 If required the ssh-agent must be started, this is correclty setup by default on Ubuntu.
-`eval $(ssh-agent)`
-'ssh-add'
+`
+eval $(ssh-agent)
+ssh-add
+'
 
 # Setup the pfx file
 For https support during asp dotnet development the PFX file needs to be setup properly.
 To add the self signed development ssl certifcate to the Ubuntu certificate store run the next:
-'$(repo_base/.resources/scrall/scrall.sh -e aspnet-httsp-dev)'
-'cp ~/.aspnet/https/dotnet-devcert.pfx ./resources/'
+'
+$(repo_base/.resources/scrall/scrall.sh -e aspnet-httsp-dev)
+cp ~/.aspnet/https/dotnet-devcert.pfx ./resources/
+'

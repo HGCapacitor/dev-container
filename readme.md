@@ -17,6 +17,6 @@ ssh-add
 For https support during asp dotnet development the PFX file needs to be setup properly.
 To add the self signed development ssl certifcate to the Ubuntu certificate store run the next:
 ```
-$(repo_base/.resources/scrall/scrall.sh -e aspnet-httsp-dev)
-cp ~/.aspnet/https/dotnet-devcert.pfx ./resources/
+$(repo_base)/.resources/scrall/scrall.sh -e aspnet-httsp-dev
+cp ~/.aspnet/https/dotnet-devcert.pfx $(repo_base)/resources/
 ```

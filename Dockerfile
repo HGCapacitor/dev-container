@@ -15,7 +15,7 @@ RUN mkdir -p /opt/scrall
 COPY resources/scrall /opt/scrall
 RUN /opt/scrall/scripts.d/docker.sh -i cli
 #RUN groupadd -g $(stat -c %g /var/run/docker.sock) docker
-RUN groupadd -g 1001 docker
+RUN groupadd -g 999 docker
 RUN usermod -a -G docker devuser
 
 #Setup dotnet-sdk
@@ -23,6 +23,11 @@ RUN wget https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/package
 RUN dpkg -i packages-microsoft-prod.deb
 RUN rm packages-microsoft-prod.deb
 RUN apt update && apt install -y dotnet-sdk-7.0
+
+#Import selfsigned certificate for HTTPS support in dotnet
+COPY resources/dotnet-devcert.pfx /home/devuser/.aspnet/https/
+RUN chown -R devuser:root /home/devuser/.aspnet
+RUN dotnet dev-certs https --clean --import /home/devuser/.aspnet/https/dotnet-devcert.pfx -p ""
 
 #Setup the ssh service
 RUN service ssh start

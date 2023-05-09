@@ -1,3 +1,5 @@
 [submodule "resources/scrall"]
 	path = resources/scrall
 	url = https://github.com/HGCapacitor/scrall.git
+	master = master
+	update = rebase

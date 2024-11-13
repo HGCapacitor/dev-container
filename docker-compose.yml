@@ -5,6 +5,7 @@ services:
       build:
         context: .
         dockerfile: Dockerfile
+      network_mode: "host"
       ports:
         - "22:22"
       environment:

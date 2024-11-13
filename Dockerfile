@@ -19,6 +19,9 @@ RUN groupadd -g 999 docker
 RUN usermod -a -G docker devuser
 
 #Setup dotnet-sdk
+RUN echo "Package: *" >> /etc/apt/preferences
+RUN echo "Pin: origin \"packages.microsoft.com\"" >> /etc/apt/preferences
+RUN echo "Pin-Priority: 1001" >> /etc/apt/preferences
 RUN wget https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
 RUN rm packages-microsoft-prod.deb
